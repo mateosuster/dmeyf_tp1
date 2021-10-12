@@ -46,7 +46,7 @@ densidades_g <- function( campo , den = T )
   combo <- rbind(sep, nov)
   
   if( den == T){
-    ggplot(combo, aes(var, fill = mes))+geom_density(alpha = 0.2)+ labs(title = campo)
+    ggplot(combo, aes(var, fill = mes))+geom_density(alpha = 0.2)+ labs(title = campo)+xlim(range(combo$var))
   }else{
     ggplot(combo, aes(var, fill = mes))+geom_histogram(alpha = 0.2, position="identity")+ labs(title = campo)
   }
@@ -56,26 +56,28 @@ densidades_g <- function( campo , den = T )
 summary_comparado <- function(campo)
 { 
   print("Septiembre \n")
-  print(summary(datasetA[, campo ] )  )  
+  print(summary(datasetA[, get(campo) ] )  )  
   print("Noviembre \n")
-  print(summary(datasetB[, campo ] )  )  
+  print(summary(datasetB[, get(campo) ] )  )  
   }
 #----------------------------------------------------------------------------------
 
+summary_comparado( "ccajeros_propios_descuentos")
 
-summary_comparado( "matm")
-
-densidades( "matm")
+densidades( "ccallcenter_transacciones")
 densidades( "tmobile_app")
-densidades_g("matm", den =F)
+densidades_g("ccajeros_propios_descuentos", den =F)
 
 
-densidades("Visa_madelantodolares")
+densidades("Master_Finiciomora")
 densidades("Visa_mconsumosdolares")
-densidades_g("Visa_mconsumosdolares", den =T)
+densidades_g("ccallcenter_transacciones", den =F)
 
 
-datasetA[, Master_Finiciomora := Master_Finiciomora+30]
+datasetA[, Master_fultimo_cierre := Master_fultimo_cierre+5]
+datasetA[, Visa_fultimo_cierre := Visa_fultimo_cierre+5]
+
+datasetA[, Master_Finiciomora := Master_Finiciomora+10]
 datasetB[, Master_Finiciomora := Master_Finiciomora-30]
 
 datasetA[, Visa_Finiciomora := Visa_Finiciomora+30]
