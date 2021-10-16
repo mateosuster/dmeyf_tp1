@@ -12,9 +12,9 @@ require("data.table")
 
 setwd("~/Investigación/1. Maestría DM/2021Economia" )
 
-version  <- "v002"  #cambiar cada vez, asi se tiene versionado del dataset
+version  <- "v008"  #cambiar cada vez, asi se tiene versionado del dataset
 
-dataset  <- fread( "./datasets/dataset_epic_simple_v009.csv.gz" )
+dataset  <- fread( "./datasets/dataset_epic_simple_v010.csv.gz" )
 dataset  <- copy(  dataset[  , c("numero_de_cliente","foto_mes","clase_ternaria"),  with=FALSE] )
 gc()
 

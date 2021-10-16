@@ -1,4 +1,4 @@
-#source("~/buckets/b1/crudoB/R/847_epic_stacking.r")
+#source("~/buckets/b1/crudoB/R/823_epic.r")
 
 #Necesita para correr en Google Cloud
 #16 GB de memoria RAM
@@ -35,18 +35,18 @@ require("mlrMBO")
 switch ( Sys.info()[['sysname']],
          Windows = { directory.root  <-  "~/Investigación/1. Maestría DM/2021Economia"  },   #Windows
          Darwin  = { directory.root  <-  "~/dm/" },  #Apple MAC
-         Linux   = { directory.root  <-  "~/buckets/b1/crudoB/" } #Google Cloud
+         Linux   = { directory.root  <-  "~/buckets/b1/" } #Google Cloud
        )
 #defino la carpeta donde trabajo
-setwd( "~/Investigación/1. Maestría DM/2021Economia"  )
+setwd( directory.root )
 
 
 
 kexperimento  <- NA   #NA si se corre la primera vez, un valor concreto si es para continuar procesando
 
-kscript         <- "847_epic_stacking"
+kscript         <- "823_epic"
 
-karch_dataset    <- "./datasets/dataset_stacking_v008.csv.gz"   #Cambiar version segun script anterior
+karch_dataset    <- "./datasets/dataset_epic_simple_v010.csv.gz"   #este dataset se genero en el script 812_dataset_epic.r
 
 kapply_mes       <- c(202011)  #El mes donde debo aplicar el modelo
 
@@ -295,11 +295,11 @@ EstimarGanancia_lightgbm  <- function( x )
                           feature_pre_filter= FALSE,
                           verbosity= -100,
                           seed= 45848748,
-                          max_depth=  30,         #MODIFICADO  # -1 significa no limitar,  por ahora lo dejo fijo
-                          min_gain_to_split= 0.3, #MODIFICADO #por ahora, lo dejo fijo
+                          max_depth=  -1,         # -1 significa no limitar,  por ahora lo dejo fijo
+                          min_gain_to_split= 0.0, #por ahora, lo dejo fijo
                           lambda_l1= 0.0,         #por ahora, lo dejo fijo
                           lambda_l2= 0.0,         #por ahora, lo dejo fijo
-                          max_bin= 31,            #por ahora, lo dejo fijo
+                          max_bin= 31,             #
                           num_iterations= 9999,   #un numero muy grande, lo limita early_stopping_rounds
                           force_row_wise= TRUE    #para que los alumnos no se atemoricen con tantos warning
                         )
