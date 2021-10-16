@@ -62,9 +62,14 @@ summary_comparado <- function(campo)
   }
 #----------------------------------------------------------------------------------
 
-summary_comparado( "ccajeros_propios_descuentos")
+campos_malos  <-  c("internet", "mactivos_margen", "foto_mes", "tpaquete1","mpayroll",
+                    "mcajeros_propios_descuentos", "tmobile_app", "cmobile_app_trx",
+                    "mtarjeta_visa_descuentos", "mtarjeta_master_descuentos",
+                    "Master_mpagominimo", "matm_other", "Master_madelantodolares" ) 
 
-densidades( "ccallcenter_transacciones")
+summary_comparado( "mcajeros_propios_descuentos")
+
+densidades( "mcajeros_propios_descuentos")
 densidades( "tmobile_app")
 densidades_g("ccajeros_propios_descuentos", den =F)
 
